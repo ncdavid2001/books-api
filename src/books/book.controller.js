@@ -3,7 +3,7 @@ import { sendResponse } from "../common/utils.common.js";
 
 export const getAllBooks = (req, res) => {
   const books = bookService.getAllBooks();
-  sendResponse(res, 201, true, "Books fetched successfully", books); // the issuse is the status code. used t should be 200};
+  sendResponse(res, 201, true, "Books fetched successfully", books); // the issuse is the status code. it should be 200}; there is no corrct error handling.
 };
 
 export const getBookById = (req, res) => {
@@ -24,8 +24,7 @@ export const updateBook = (req, res) => {
     const book = bookService.updateBook(id, req.body);
     sendResponse(res, 200, true, "Book updated successfully", book);
   } catch (error) {
-  const book = bookService.updateBook(id, req.body);
-  sendResponse(res, 200, true, "Book updated successfully", book); // there is no error handler
+  sendResponse(res, 200, true, "Book updated successfully", book); // incorrrrect status code, it should be 500 if there is an error
 };
 
 export const deleteBook = (req, res) => {
@@ -34,4 +33,4 @@ export const deleteBook = (req, res) => {
     bookService.deleteBook(id);
     sendResponse(res, 200, true, "Book deleted successfully", null);
   } catch (error) {
-  sendResponse(res, 204, true, "Book deleted successfully", null); // the status code is incorrect, it should be 200};
+  sendResponse(res, 204, true, "Book deleted successfully", null); // the status code is incorrect and there is no. error handling
