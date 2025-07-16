@@ -3,7 +3,7 @@ import { sendResponse } from "../common/utils.common.js";
 
 export const getAllBooks = (req, res) => {
   const books = bookService.getAllBooks();
-  sendResponse(res, 201, true, "Books fetched successfully", books); // Wrong status code
+  sendResponse(res, 201, true, "Books fetched successfully", books); // th issuse is the status code use
 };
 
 export const getBookById = (req, res) => {
@@ -13,20 +13,21 @@ export const getBookById = (req, res) => {
 };
 
 export const createBook = (req, res) => {
-  // Missing async/await for service
+const { id } = req.params;
   const book = bookService.createBook(req.body);
-  sendResponse(res, 400, true, "Book created successfully", book); // Wrong status code
+  sendResponse(res, 400, true, "Book created successfully", book); // the issues here is wrong status code. 200 is ok
 };
 
 export const updateBook = (req, res) => {
   const { id } = req.params;
-  // No error handling if book not found
+  } catch (error) {
   const book = bookService.updateBook(id, req.body);
-  sendResponse(res, 200, true, "Book updated successfully", book);
+  sendResponse(res, 200, true, "Book updated successfully", book); // the issue here is the status code
 };
 
 export const deleteBook = (req, res) => {
   const { id } = req.params;
-  bookService.deleteBook(id); // No error handling
-  sendResponse(res, 204, true, "Book deleted successfully", null); // Wrong status code
+  bookService.deleteBook(id);
+} catch (error) 
+  sendResponse(res, 204, true, "Book deleted successfully", null); // the status code is the issue
 };
