@@ -14,10 +14,11 @@ export const createBook = (data) => {
 };
 
 export const updateBook = (id, data) => {
-    // Logic error: does not update the book
-    return books.find(book => book.id === id);
-};
-
+    const book = books.find(book => book.id === id);
+    if (book) {
+        Object.assign(book, data);
+    }
+    return book;
 export const deleteBook = (id) => {
     // Logic error: does not remove the book
     return true;
